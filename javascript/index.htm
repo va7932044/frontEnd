@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario</title>
+<style>
+  .error {
+    color: red;
+  }
+</style>
+</head>
+<body>
+<h2>Formulario</h2>
+<form id="alumnoForm" onsubmit="return validarFormulario()">
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre" required><br>
+  
+  <label for="apellido">Apellido:</label><br>
+  <input type="text" id="apellido" name="apellido" required><br>
+  
+  <label for="legajo">Legajo:</label><br>
+  <input type="text" id="legajo" name="legajo" required><br>
+  
+  <label for="email">Correo Electrónico:</label><br>
+  <input type="email" id="email" name="email" required><br>
+  
+  <label for="materia1">Materia 1:</label><br>
+  <input type="text" id="materia1" name="materia1" required><br>
+  <label for="nota1">Nota Materia 1:</label><br>
+  <input type="number" id="nota1" name="nota1" min="0" max="10" step="0.01" required><br>
+  
+  <label for="materia2">Materia 2:</label><br>
+  <input type="text" id="materia2" name="materia2" required><br>
+  <label for="nota2">Nota Materia 2:</label><br>
+  <input type="number" id="nota2" name="nota2" min="0" max="10" step="0.01" required><br>
+  
+  <label for="materia3">Materia 3:</label><br>
+  <input type="text" id="materia3" name="materia3" required><br>
+  <label for="nota3">Nota Materia 3:</label><br>
+  <input type="number" id="nota3" name="nota3" min="0" max="10" step="0.01" required><br>
+  
+  <label for="materia4">Materia 4:</label><br>
+  <input type="text" id="materia4" name="materia4" required><br>
+  <label for="nota4">Nota Materia 4:</label><br>
+  <input type="number" id="nota4" name="nota4" min="0" max="10" step="0.01" required><br>
+  
+  <label for="materia5">Materia 5:</label><br>
+  <input type="text" id="materia5" name="materia5" required><br>
+  <label for="nota5">Nota Materia 5:</label><br>
+  <input type="number" id="nota5" name="nota5" min="0" max="10" step="0.01" required><br>
+  
+  <input type="submit" value="Enviar">
+</form>
+
+<p id="errorMensaje" class="error"></p>
+<p id="resultadoPromedio"></p>
+
+<script>
+function validarFormulario() {
+  var nombre = document.getElementById("nombre").value;
+  var apellido = document.getElementById("apellido").value;
+  var legajo = document.getElementById("legajo").value;
+  var email = document.getElementById("email").value;
+  var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  var materia1 = document.getElementById("materia1").value;
+  var nota1 = parseFloat(document.getElementById("nota1").value);
+  var materia2 = document.getElementById("materia2").value;
+  var nota2 = parseFloat(document.getElementById("nota2").value);
+  var materia3 = document.getElementById("materia3").value;
+  var nota3 = parseFloat(document.getElementById("nota3").value);
+  var materia4 = document.getElementById("materia4").value;
+  var nota4 = parseFloat(document.getElementById("nota4").value);
+  var materia5 = document.getElementById("materia5").value;
+  var nota5 = parseFloat(document.getElementById("nota5").value);
+  
+  var errorMensaje = document.getElementById("errorMensaje");
+  
+  if (nombre === "" || apellido === "" || legajo === "" || email === "" || materia1 === "" || isNaN(nota1) || materia2 === "" || isNaN(nota2) || materia3 === "" || isNaN(nota3) || materia4 === "" || isNaN(nota4) || materia5 === "" || isNaN(nota5)) {
+    errorMensaje.innerText = "Por favor complete todos los campos.";
+    return false;
+  }
+  
+  if (!regexEmail.test(email)) {
+    errorMensaje.innerText = "Por favor ingrese un correo electrónico válido.";
+    return false;
+  }
+  
+  var promedio = (nota1 + nota2 + nota3 + nota4 + nota5) / 5;
+  document.getElementById("resultadoPromedio").innerText = "Promedio: " + promedio.toFixed(2);
+  
+  return true;
+}
+</script>
+</body>
+</html>
