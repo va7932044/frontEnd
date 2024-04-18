@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arreglo y operaciones en Javascript</title>
+</head>
+<body>
+  <div id="result"></div>
+   <script>
+    //crear un arreglo con 10 números aleatorios entre 1 y 100.
+    const arr = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100) + 1);
+   
+        // Calcular la suma de todos los números del arreglo.
+        const sum = arr.reduce((acc, val) => acc + val, 0);
+
+        // Calcular el promedio de todos los números del arreglo.
+        const avg = sum / arr.length;
+
+        // Encontrar el número máximo y el número mínimo del arreglo.
+        const min = Math.min(...arr);
+        const max = Math.max(...arr);
+
+        // Eliminar el primer y el último elemento del arreglo.
+        arr.shift();
+        arr.pop();
+
+        // Agregar un nuevo elemento al final del arreglo.
+        arr.push(Math.floor(Math.random() * 100) + 1);
+
+        // Ordenar el arreglo de menor a mayor.
+        arr.sort((a, b) => a - b);
+
+        // Invertir el orden del arreglo.
+        arr.reverse();
+
+        // Mostrar el contenido del arreglo en la consola del navegador.
+        console.log("Arreglo final:", arr);
+
+        // Aqui se muestra el resultado en html.
+        const html = `
+            <div class="result">
+                <p>Suma de los numeros: ${sum}</p>
+                <p>Promediode todos los numeros: ${avg.toFixed(2)}</p>
+                <p>Número Mínimo: ${min}</p>
+                <p>Número Máximo: ${max}</p>
+                <p>Arreglar después de eliminar el primer y último elemento:</p>
+                <p>${arr.join(", ")}</p>
+                <p>Arreglar después de agregar un nuevo elemento:</p>
+                <p>${arr.join(", ")}</p>
+                <p>Arreglar ordenado de menor a mayor:</p>
+                <p>${arr.join(", ")}</p>
+                <p>Invertir el orden del arreglo:</p>
+                <p>${arr.join(", ")}</p>
+            </div>
+        `;
+        document.getElementById("result").innerHTML = html;
+    </script>
+</body>
+</html>
